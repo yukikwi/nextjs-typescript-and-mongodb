@@ -23,19 +23,27 @@ export default function Usuarios() {
     }
   }, []);
 
-  const mappedPosts = posts.reverse().map((post, i) => (
-    <div
-      style={{
-        transition: "0.12s",
-      }}
-      className="break-words p-4 rounded-md text-sm w-full sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/6 border-2 hover:bg-gray-100 m-1 cursor-pointer"
-      key={Math.random()}
-    >
-      <b className="my-2">{post.title}</b>
-      <br />
-      <p className="my-4">{post.content}</p>
-    </div>
-  ));
+  const mappedPosts = posts.reverse().map((post, i) => {
+    let author
+    if(typeof(post.author) !== 'undefined'){    
+      author = <p className="my-4" >Author: {post.author.name}</p>
+    }
+    return(
+      <div
+        style={{
+          transition: "0.12s",
+        }}
+        className="break-words p-4 rounded-md text-sm w-full sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/6 border-2 hover:bg-gray-100 m-1 cursor-pointer"
+        key={Math.random()}
+      >
+        <b className="my-2">{post.title}</b>
+        <br />
+        <p className="my-4">{post.content}</p>
+        <br />
+        { author }
+      </div>
+    )
+  });
 
   return (
     <div>

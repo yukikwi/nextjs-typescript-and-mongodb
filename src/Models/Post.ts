@@ -4,6 +4,7 @@ export interface IPost extends Document {
     title: string,
     date: string,
     content: string,
+    author: string
 }
 
 const PostSchema: Schema = new Schema({
@@ -15,6 +16,10 @@ const PostSchema: Schema = new Schema({
     },
     content: {
         type: String
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 
